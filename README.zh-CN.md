@@ -14,11 +14,11 @@ wowMD 专注于一个常见场景：阅读 GitHub 上较长、结构复杂的 RE
 
 ### Chrome Web Store
 
-Chrome Web Store 的公开商店素材保存在 `chrome-web-store/`。如果公开商店页面已经上线，请优先从 Chrome Web Store 安装 wowMD。
+Chrome Web Store 版本目前正在审核中。公开商店素材保存在 `chrome-web-store/`。
 
 ### 本地加载
 
-在商店页面上线前，或需要测试本地版本时：
+在 Chrome Web Store 审核通过前，请通过本地加载方式安装：
 
 1. 下载或克隆这个仓库。
 2. 打开 Chrome，进入 `chrome://extensions/`。

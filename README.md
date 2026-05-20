@@ -14,11 +14,11 @@ When a supported page is complex enough to benefit from structured reading, wowM
 
 ### Chrome Web Store
 
-The Chrome Web Store listing materials are kept in `chrome-web-store/`. If a public store listing is available, install wowMD from the Chrome Web Store.
+The Chrome Web Store version is currently under review. The public listing materials are kept in `chrome-web-store/`.
 
 ### Load Locally
 
-Until a store listing is available, or when testing a local build:
+Until the Chrome Web Store listing is approved, load the extension locally:
 
 1. Download or clone this repository.
 2. Open Chrome and go to `chrome://extensions/`.
