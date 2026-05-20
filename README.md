@@ -150,6 +150,13 @@ Before release, verify:
 - GitHub SPA navigation does not leave stale entries behind.
 - The console has no obvious extension errors.
 
+## License
+
+Source code and documentation are licensed under the MIT License. The wowMD
+name, logos, icons, screenshots, promotional images, store listing artwork, and
+other brand-identifying assets are not licensed for reuse. See `LICENSE`,
+`TRADEMARKS.md`, and `THIRD_PARTY_NOTICES.md`.
+
 ## Status
 
 - Current version: `0.1.0`

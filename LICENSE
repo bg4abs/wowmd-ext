@@ -1,0 +1,41 @@
+Code and Documentation License
+
+Unless otherwise noted below, the source code and documentation in this
+repository are licensed under the MIT License.
+
+Brand Asset Exception
+
+The MIT License does not grant any right to use wowMD brand assets, including
+the wowMD name, logos, icons, wordmarks, screenshots, promotional images,
+store listing artwork, or other brand-identifying assets. Those materials are
+reserved and may not be copied, modified, redistributed, or used in another
+product or service without prior written permission.
+
+Third-Party Software
+
+Bundled third-party libraries remain licensed under their respective licenses.
+See THIRD_PARTY_NOTICES.md for details.
+
+MIT License
+
+Copyright (c) 2026 bg4abs
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the software and associated documentation files covered by this license
+(the "Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice, this permission notice, and the license scope
+notices above shall be included in all copies or substantial portions of the
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
