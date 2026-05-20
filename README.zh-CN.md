@@ -137,6 +137,7 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 
 - `extension/`：Chrome 扩展源码。
 - `docs/media/`：这个仓库使用的效果预览图片和演示视频。
+- `CHANGELOG.md`：版本发布记录。
 - `THIRD_PARTY_NOTICES.md`：内置第三方库许可证说明。
 - `TRADEMARKS.md`：wowMD 品牌资产使用政策。
 

@@ -137,6 +137,7 @@ Before release, verify:
 
 - `extension/`: Chrome extension source.
 - `docs/media/`: preview images and demo video for this repository.
+- `CHANGELOG.md`: release history.
 - `THIRD_PARTY_NOTICES.md`: bundled library license notices.
 - `TRADEMARKS.md`: wowMD brand asset usage policy.
 
