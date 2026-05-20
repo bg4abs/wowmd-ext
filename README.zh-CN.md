@@ -1,6 +1,6 @@
 # wowMD 中文说明
 
-[English README](readme-en.md)
+[English README](README.md)
 
 wowMD 是一个轻量级 Chrome 扩展，用来把较长的公开 GitHub README 和 Markdown 文件变成更清晰、更容易导航的结构化阅读体验。
 
