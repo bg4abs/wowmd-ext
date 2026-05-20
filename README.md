@@ -14,7 +14,7 @@ When a supported page is complex enough to benefit from structured reading, wowM
 
 ### Chrome Web Store
 
-The Chrome Web Store version is currently under review. The public listing materials are kept in `chrome-web-store/`.
+The Chrome Web Store version is currently under review. Store submission materials are not included in this public repository.
 
 ### Load Locally
 
@@ -126,7 +126,6 @@ Before release, verify:
 ## Repository Layout
 
 - `extension/`: Chrome extension source.
-- `chrome-web-store/`: public Chrome Web Store listing text and assets.
 - `THIRD_PARTY_NOTICES.md`: bundled library license notices.
 - `TRADEMARKS.md`: wowMD brand asset usage policy.
 

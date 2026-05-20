@@ -14,7 +14,7 @@ wowMD 专注于一个常见场景：阅读 GitHub 上较长、结构复杂的 RE
 
 ### Chrome Web Store
 
-Chrome Web Store 版本目前正在审核中。公开商店素材保存在 `chrome-web-store/`。
+Chrome Web Store 版本目前正在审核中。商店提交素材不包含在这个公开仓库中。
 
 ### 本地加载
 
@@ -126,7 +126,6 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 ## 仓库结构
 
 - `extension/`：Chrome 扩展源码。
-- `chrome-web-store/`：公开的 Chrome Web Store 文案和素材。
 - `THIRD_PARTY_NOTICES.md`：内置第三方库许可证说明。
 - `TRADEMARKS.md`：wowMD 品牌资产使用政策。
 
