@@ -1,23 +1,38 @@
-# wowMD English README
+# wowMD
 
 [中文说明](README.zh-CN.md)
 
 wowMD is a lightweight Chrome extension that turns long public GitHub README and Markdown pages into a cleaner, structured reading experience.
 
-## Overview
+## What It Does
 
-wowMD focuses on one small but common workflow: reading long and complex README files or `.md` / `.markdown` documents on GitHub.
+wowMD focuses on one common workflow: reading long and complex README files or `.md` / `.markdown` documents on GitHub.
 
-When a supported page is complex enough to benefit from structured reading, wowMD shows a `Better View` button near the document. Clicking it opens a right-side panel. The panel starts with an outline, helping users understand the document structure and jump to the section they need.
+When a supported page is complex enough to benefit from structured reading, wowMD shows a `Better View` button near the document. Clicking it opens a right-side panel with an outline, section navigation, and a reading view. For longer sessions, `Open full reader` opens an extension-owned full-screen reader in a new browser tab.
 
-For longer focused reading, users can click `Open full reader` at the bottom of the panel to open a full-screen reader in a new browser tab.
+## Install
+
+### Chrome Web Store
+
+The Chrome Web Store listing materials are kept in `chrome-web-store/`. If a public store listing is available, install wowMD from the Chrome Web Store.
+
+### Load Locally
+
+Until a store listing is available, or when testing a local build:
+
+1. Download or clone this repository.
+2. Open Chrome and go to `chrome://extensions/`.
+3. Enable Developer mode.
+4. Click Load unpacked.
+5. Select the `extension/` directory.
+6. Open a public GitHub README or `.md` page.
 
 ## Key Features
 
 - **Appears only when useful**: short README pages stay clean and undisturbed.
 - **Outline first**: the panel opens with a structured outline instead of duplicating the full document.
 - **Outline navigation**: clicking an outline item switches to Read and scrolls to the matching heading.
-- **Clear return path**: the Read view includes `← Back to outline`.
+- **Clear return path**: the Read view includes `Back to outline`.
 - **Right-side reading panel**: GitHub remains the main page, while wowMD acts as a reading aid.
 - **Full-screen reader**: `Open full reader` opens a local structured reader in a new tab.
 - **Independent H2 folding**: long documents can be collapsed section by section.
@@ -52,52 +67,15 @@ Future premium features may be provided through the `wowmd.app` API, but the cur
 
 ## How to Use
 
-1. Install or load the wowMD Chrome extension.
-2. Open a public GitHub repository README or Markdown file page, for example:
+1. Open a public GitHub repository README or Markdown file page, for example:
    - `https://github.com/facebook/react`
    - `https://github.com/owner/repo/blob/main/README.md`
-3. If the document is complex enough, `Better View` appears near the document.
-4. Click `Better View` to open the right-side panel.
-5. Browse the `Outline`.
-6. Click an outline item to switch to `Read` and scroll to the matching section.
-7. Use `← Back to outline` at the top of Read to return to the outline.
-8. Click `Open full reader` at the bottom of the panel to open the full-screen reader in a new tab.
-
-## Full-Screen Reader
-
-The full-screen reader is an extension-owned page. It does not navigate to a website and does not depend on `wowmd.app`.
-
-It opens a `chrome-extension://.../reader/reader.html` tab and renders the current Markdown document locally in the browser.
-
-The first version includes:
-
-- Top brand bar, file path, and original GitHub link.
-- Fixed left-side Outline.
-- Main reading column.
-- Independent document scrolling while the Outline stays visible.
-- Subtle active-section highlighting in the Outline while reading.
-- H2 folding.
-- Code highlighting.
-- Horizontal table scrolling.
-- Relative image path fixing.
-
-The right-side feature area is intentionally not shown yet. Future API, account, or premium features can be added later as independent modules without changing the local reading core.
-
-## Complexity Filter
-
-wowMD does not appear on every README.
-
-It estimates document complexity from the already-rendered GitHub DOM, including:
-
-- Heading count.
-- H2 / H3 count.
-- Code block count.
-- Table count.
-- List count.
-- Text length.
-- Rendered height.
-
-If a document is short or structurally simple, wowMD stays quiet. This gives users a stable expectation: when `Better View` appears, the document is likely worth opening in structured reading mode.
+2. If the document is complex enough, `Better View` appears near the document.
+3. Click `Better View` to open the right-side panel.
+4. Browse the `Outline`.
+5. Click an outline item to switch to `Read` and scroll to the matching section.
+6. Use `Back to outline` at the top of Read to return to the outline.
+7. Click `Open full reader` at the bottom of the panel to open the full-screen reader in a new tab.
 
 ## Privacy
 
@@ -127,16 +105,11 @@ Chrome permissions declared by the extension:
 
 `storage` is used only to pass the current document to the extension-owned full-screen reader tab through the background service worker and `chrome.storage.session`.
 
-## Local Development
+## Development
 
-1. Open Chrome.
-2. Go to `chrome://extensions/`.
-3. Enable Developer mode.
-4. Click Load unpacked.
-5. Select the local `extension/` directory.
-6. Open a public GitHub README or `.md` page to test.
+The extension is a Manifest V3 Chrome extension. The loadable extension root is `extension/`.
 
-## Release Checklist
+There is no build step for the current version. Edit the files under `extension/`, then reload the unpacked extension from `chrome://extensions/`.
 
 Before release, verify:
 
@@ -150,12 +123,18 @@ Before release, verify:
 - GitHub SPA navigation does not leave stale entries behind.
 - The console has no obvious extension errors.
 
+## Repository Layout
+
+- `extension/`: Chrome extension source.
+- `chrome-web-store/`: public Chrome Web Store listing text and assets.
+- `THIRD_PARTY_NOTICES.md`: bundled library license notices.
+- `TRADEMARKS.md`: wowMD brand asset usage policy.
+
 ## License
 
-Source code and documentation are licensed under the MIT License. The wowMD
-name, logos, icons, screenshots, promotional images, store listing artwork, and
-other brand-identifying assets are not licensed for reuse. See `LICENSE`,
-`TRADEMARKS.md`, and `THIRD_PARTY_NOTICES.md`.
+Source code and documentation are licensed under the MIT License. The wowMD name, logos, icons, screenshots, promotional images, store listing artwork, and other brand-identifying assets are not licensed for reuse. See `LICENSE`, `TRADEMARKS.md`, and `THIRD_PARTY_NOTICES.md`.
+
+If you fork or redistribute this project, replace the wowMD name, icons, screenshots, promotional images, and store listing artwork with your own brand assets.
 
 ## Status
 

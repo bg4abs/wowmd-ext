@@ -4,20 +4,35 @@
 
 wowMD 是一个轻量级 Chrome 扩展，用来把较长的公开 GitHub README 和 Markdown 文件变成更清晰、更容易导航的结构化阅读体验。
 
-## 项目简介
+## 它做什么
 
-wowMD 专注于一个很小但高频的场景：阅读 GitHub 上较长、结构复杂的 README 或 `.md` / `.markdown` 文档。
+wowMD 专注于一个常见场景：阅读 GitHub 上较长、结构复杂的 README 或 `.md` / `.markdown` 文档。
 
-当当前页面足够复杂、确实值得使用结构化阅读时，wowMD 会在文档区域显示 `Better View` 按钮。点击后，页面右侧会打开一个阅读面板。面板默认展示文档目录，帮助用户快速理解文档结构，并跳转到对应章节。
+当当前页面足够复杂、确实值得使用结构化阅读时，wowMD 会在文档区域显示 `Better View` 按钮。点击后，页面右侧会打开一个阅读面板，提供目录、章节跳转和阅读视图。如果用户想进行更长时间的沉浸式阅读，可以点击 `Open full reader`，在浏览器新标签页中打开扩展内部的全屏阅读器。
 
-如果用户想进行更长时间的沉浸式阅读，可以点击面板底部的 `Open full reader`，在浏览器新标签页中打开扩展内部的全屏阅读器。
+## 安装
+
+### Chrome Web Store
+
+Chrome Web Store 的公开商店素材保存在 `chrome-web-store/`。如果公开商店页面已经上线，请优先从 Chrome Web Store 安装 wowMD。
+
+### 本地加载
+
+在商店页面上线前，或需要测试本地版本时：
+
+1. 下载或克隆这个仓库。
+2. 打开 Chrome，进入 `chrome://extensions/`。
+3. 开启 Developer mode。
+4. 点击 Load unpacked。
+5. 选择 `extension/` 目录。
+6. 打开公开 GitHub README 或 `.md` 页面进行测试。
 
 ## 核心特点
 
 - **只在合适时出现**：短 README 不显示入口，避免打扰。
 - **默认显示目录**：打开面板后优先展示 Outline，而不是直接复制全文。
 - **目录跳转阅读**：点击目录项后自动切换到 Read，并滚动到对应标题。
-- **清晰返回路径**：Read 顶部提供 `← Back to outline`。
+- **清晰返回路径**：Read 顶部提供 `Back to outline`。
 - **右侧辅助面板**：GitHub 原页面仍然是主场景，wowMD 只是阅读辅助。
 - **全屏阅读器**：点击 `Open full reader` 后，在新标签页中打开本地结构化阅读器。
 - **H2 独立折叠**：长文档可以按章节收起和展开。
@@ -52,52 +67,15 @@ wowMD v0.x 是阅读辅助工具，不是完整文档平台。
 
 ## 使用方式
 
-1. 安装或加载 wowMD Chrome 扩展。
-2. 打开一个公开 GitHub 仓库首页或 Markdown 文件页，例如：
+1. 打开一个公开 GitHub 仓库首页或 Markdown 文件页，例如：
    - `https://github.com/facebook/react`
    - `https://github.com/owner/repo/blob/main/README.md`
-3. 如果文档足够复杂，页面内容区域会出现 `Better View`。
-4. 点击 `Better View` 打开右侧阅读面板。
-5. 在 `Outline` 中浏览目录。
-6. 点击目录项后，面板会切换到 `Read` 并滚动到对应章节。
-7. 在 `Read` 顶部点击 `← Back to outline` 返回目录。
-8. 点击面板底部的 `Open full reader`，可在新标签页中打开全屏阅读器。
-
-## 全屏阅读器
-
-全屏阅读器是扩展内部页面，不跳转到网站，也不依赖 `wowmd.app`。
-
-它会在当前浏览器中新开一个 `chrome-extension://.../reader/reader.html` 标签页，并在本地渲染当前 Markdown 文档。
-
-第一版包含：
-
-- 顶部品牌栏、文件路径和 GitHub 原链接。
-- 左侧固定 Outline。
-- 中间主阅读区。
-- 正文独立滚动，左侧目录保持在当前视窗内。
-- 阅读正文时，左侧目录会克制地高亮当前视窗所在章节。
-- H2 折叠。
-- 代码高亮。
-- 表格横向滚动。
-- 图片相对路径修复。
-
-右侧功能栏暂不显示。未来如果接入 API、账号或增值功能，会作为独立模块加入，不影响本地阅读核心。
-
-## 复杂度过滤
-
-wowMD 不会在每一个 README 上都显示入口。
-
-扩展会基于 GitHub 已经渲染出的页面 DOM 估算文档复杂度，例如：
-
-- 标题数量。
-- H2 / H3 数量。
-- 代码块数量。
-- 表格数量。
-- 列表数量。
-- 正文长度。
-- 渲染高度。
-
-如果文档较短或结构简单，wowMD 会保持安静，不显示入口。这样用户看到 `Better View` 时，就能形成稳定预期：这篇文档值得用结构化阅读模式打开。
+2. 如果文档足够复杂，页面内容区域会出现 `Better View`。
+3. 点击 `Better View` 打开右侧阅读面板。
+4. 在 `Outline` 中浏览目录。
+5. 点击目录项后，面板会切换到 `Read` 并滚动到对应章节。
+6. 在 `Read` 顶部点击 `Back to outline` 返回目录。
+7. 点击面板底部的 `Open full reader`，可在新标签页中打开全屏阅读器。
 
 ## 隐私保护
 
@@ -127,16 +105,11 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 
 `storage` 用于在用户点击 `Open full reader` 时，通过 background service worker 和 `chrome.storage.session` 把当前文档临时传递给扩展内部的新标签页阅读器。
 
-## 本地开发
+## 开发
 
-1. 打开 Chrome。
-2. 进入 `chrome://extensions/`。
-3. 开启 Developer mode。
-4. 点击 Load unpacked。
-5. 选择项目中的 `extension/` 目录。
-6. 打开公开 GitHub README 或 `.md` 页面进行测试。
+这个扩展是 Manifest V3 Chrome 扩展。可加载的扩展根目录是 `extension/`。
 
-## 发布前检查
+当前版本没有构建步骤。修改 `extension/` 下的文件后，在 `chrome://extensions/` 中重新加载 unpacked extension 即可。
 
 建议发布前至少检查：
 
@@ -149,6 +122,19 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 - 全屏阅读器中的目录跳转、当前位置高亮、H2 折叠、图片、表格、代码块正常。
 - GitHub SPA 页面切换后不会残留旧入口。
 - Console 没有明显扩展错误。
+
+## 仓库结构
+
+- `extension/`：Chrome 扩展源码。
+- `chrome-web-store/`：公开的 Chrome Web Store 文案和素材。
+- `THIRD_PARTY_NOTICES.md`：内置第三方库许可证说明。
+- `TRADEMARKS.md`：wowMD 品牌资产使用政策。
+
+## 授权
+
+源代码和文档使用 MIT License。wowMD 名称、logo、icon、截图、宣传图、商店素材和其他品牌识别资产不授权复用。详见 `LICENSE`、`TRADEMARKS.md` 和 `THIRD_PARTY_NOTICES.md`。
+
+如果你 fork 或再分发这个项目，请替换 wowMD 名称、图标、截图、宣传图和商店素材，使用你自己的品牌资产。
 
 ## 项目状态
 
