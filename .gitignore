@@ -18,9 +18,9 @@ pnpm-debug.log*
 extension.crx
 extension.pem
 extension.zip
-chrome-web-store-submission/package/*.zip
-chrome-web-store-submission/package/*.crx
-chrome-web-store-submission/package/*.pem
+chrome-web-store/package/*.zip
+chrome-web-store/package/*.crx
+chrome-web-store/package/*.pem
 
 # Local browser/test output
 chrome-profile*/
