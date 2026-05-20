@@ -10,6 +10,16 @@ wowMD 专注于一个常见场景：阅读 GitHub 上较长、结构复杂的 RE
 
 当当前页面足够复杂、确实值得使用结构化阅读时，wowMD 会在文档区域显示 `Better View` 按钮。点击后，页面右侧会打开一个阅读面板，提供目录、章节跳转和阅读视图。如果用户想进行更长时间的沉浸式阅读，可以点击 `Open full reader`，在浏览器新标签页中打开扩展内部的全屏阅读器。
 
+## 效果预览
+
+![wowMD 目录面板](docs/media/outline-panel.png)
+
+![wowMD 全屏阅读器](docs/media/full-reader.png)
+
+[![wowMD 演示视频](docs/media/hero-demo-poster.jpg)](docs/media/hero-demo.mp4)
+
+这些预览图片和视频仅用于展示 wowMD 效果，属于品牌识别资产，不授权复用。
+
 ## 安装
 
 ### Chrome Web Store
@@ -126,6 +136,7 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 ## 仓库结构
 
 - `extension/`：Chrome 扩展源码。
+- `docs/media/`：这个仓库使用的效果预览图片和演示视频。
 - `THIRD_PARTY_NOTICES.md`：内置第三方库许可证说明。
 - `TRADEMARKS.md`：wowMD 品牌资产使用政策。
 

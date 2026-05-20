@@ -10,6 +10,16 @@ wowMD focuses on one common workflow: reading long and complex README files or `
 
 When a supported page is complex enough to benefit from structured reading, wowMD shows a `Better View` button near the document. Clicking it opens a right-side panel with an outline, section navigation, and a reading view. For longer sessions, `Open full reader` opens an extension-owned full-screen reader in a new browser tab.
 
+## Preview
+
+![wowMD outline panel](docs/media/outline-panel.png)
+
+![wowMD full-screen reader](docs/media/full-reader.png)
+
+[![wowMD demo video](docs/media/hero-demo-poster.jpg)](docs/media/hero-demo.mp4)
+
+These preview images and video are included only to demonstrate wowMD. They are brand-identifying assets and are not licensed for reuse.
+
 ## Install
 
 ### Chrome Web Store
@@ -126,6 +136,7 @@ Before release, verify:
 ## Repository Layout
 
 - `extension/`: Chrome extension source.
+- `docs/media/`: preview images and demo video for this repository.
 - `THIRD_PARTY_NOTICES.md`: bundled library license notices.
 - `TRADEMARKS.md`: wowMD brand asset usage policy.
 
