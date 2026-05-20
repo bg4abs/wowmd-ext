@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wowMD Reader</title>
+  <link rel="stylesheet" href="reader.css">
+</head>
+<body>
+  <div class="reader-shell">
+    <header class="reader-topbar">
+      <div class="reader-brand" aria-label="wowMD">
+        <span class="reader-brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="reader-brand-text" aria-hidden="true"><span class="reader-brand-wow">wow</span><span class="reader-brand-md">MD</span></span>
+      </div>
+      <div class="reader-file">
+        <span class="reader-repo" id="reader-repo">Markdown</span>
+        <span class="reader-path" id="reader-path">Loading...</span>
+      </div>
+      <nav class="reader-actions" aria-label="Reader actions">
+        <a class="reader-action" id="reader-source" href="#" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <button class="reader-action" id="reader-close" type="button">Close</button>
+      </nav>
+    </header>
+
+    <main class="reader-layout">
+      <aside class="reader-outline" aria-label="Document outline">
+        <p class="reader-outline-label">Outline</p>
+        <div class="reader-outline-list" id="reader-outline"></div>
+      </aside>
+
+      <section class="reader-main" id="reader-scroll">
+        <article class="reader-document" id="reader-document">
+          <div class="reader-status">Preparing document...</div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="../content/i18n.js"></script>
+  <script src="../lib/dompurify.min.js"></script>
+  <script src="../lib/markdown-it.min.js"></script>
+  <script src="../lib/highlight.min.js"></script>
+  <script src="../content/resource.js"></script>
+  <script src="../content/render.js"></script>
+  <script src="../content/toc.js"></script>
+  <script src="../content/fold.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

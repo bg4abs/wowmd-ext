@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wowMD</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell" aria-label="wowMD status">
+      <header class="popup-header">
+        <span class="popup-brand" aria-label="wowMD">
+          <span class="popup-brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="popup-title" aria-hidden="true"><span class="popup-title-wow">wow</span><span class="popup-title-md">MD</span></span>
+          <span class="popup-version" id="popup-version">v0.1.0</span>
+        </span>
+        <button class="popup-close" id="popup-close" type="button" aria-label="Close">&#10005;</button>
+      </header>
+
+      <section class="popup-content">
+        <p class="popup-slogan">Long Markdown, finally <span>readable.</span></p>
+
+        <section class="status-block" aria-label="Better View guidance">
+          <span class="status-accent" aria-hidden="true"></span>
+          <p>
+            A <span class="inline-better-view" aria-label="Better View button preview"><span class="inline-better-view-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Better View</span></span> button will appear when necessary. Click it and enjoy a new reading experience.
+          </p>
+        </section>
+
+        <footer class="popup-footer">
+          <p>Check <a href="https://wowmd.app/" target="_blank" rel="noopener noreferrer">wowMD.app</a> for more information.</p>
+        </footer>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

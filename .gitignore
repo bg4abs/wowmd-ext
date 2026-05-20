@@ -1,0 +1,29 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies and logs
+node_modules/
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Chrome extension packaging output
+*.crx
+*.pem
+*.zip
+extension.crx
+extension.pem
+extension.zip
+chrome-web-store-submission/package/*.zip
+chrome-web-store-submission/package/*.crx
+chrome-web-store-submission/package/*.pem
+
+# Local browser/test output
+chrome-profile*/
+playwright-report/
+test-results/
+tmp/

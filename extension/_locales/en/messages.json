@@ -1,0 +1,125 @@
+{
+  "main_button_text": {
+    "message": "Better View",
+    "description": "Text on the main entry button injected near README title"
+  },
+  "open_markdown_reader": {
+    "message": "Open wowMD",
+    "description": "aria-label for entry buttons"
+  },
+  "open_full_reader": {
+    "message": "Open full reader",
+    "description": "Button text for opening the full-screen reader tab"
+  },
+  "full_reader_unavailable": {
+    "message": "Full reader is available after the document loads.",
+    "description": "Tooltip shown before full reader can open"
+  },
+  "extension_context_invalidated": {
+    "message": "Extension was reloaded. Refresh this GitHub page to use full reader.",
+    "description": "Tooltip shown when an old content script remains after extension reload"
+  },
+  "refresh_page_to_reopen": {
+    "message": "Refresh page to reopen",
+    "description": "Button text shown when the extension context was invalidated"
+  },
+  "panel_title": {
+    "message": "wowMD",
+    "description": "Title shown in the panel header"
+  },
+  "tab_toc": {
+    "message": "Outline",
+    "description": "Label for the table-of-contents tab"
+  },
+  "tab_read": {
+    "message": "Read",
+    "description": "Label for the reading-content tab"
+  },
+  "back_to_toc": {
+    "message": "\u2190 Back to outline",
+    "description": "Link text to return from reading view to TOC"
+  },
+  "footer_site_link": {
+    "message": "wowmd.app",
+    "description": "Footer link text for the product website"
+  },
+
+  "loading_message": {
+    "message": "Preparing document\u2026",
+    "description": "Shown while fetching and rendering Markdown"
+  },
+
+  "toc_section_count_one": {
+    "message": "1 section",
+    "description": "Shown when exactly one heading is detected"
+  },
+  "toc_section_count": {
+    "message": "$count$ sections",
+    "description": "Shows how many headings were detected. Placeholder: $count$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "toc_empty_title": {
+    "message": "This document has no clear sections.",
+    "description": "Shown when the TOC is empty"
+  },
+  "toc_empty_hint": {
+    "message": "Switch to the \u201CRead\u201D tab to view the full text.",
+    "description": "Hint shown below the empty-TOC message"
+  },
+  "toc_untitled": {
+    "message": "(Untitled)",
+    "description": "Fallback text for headings that have no text"
+  },
+
+  "error_title_unavailable": {
+    "message": "Can\u2019t read this page right now",
+    "description": "Generic error title when content cannot be fetched"
+  },
+  "error_title_empty": {
+    "message": "This file appears to be empty",
+    "description": "Error title when the Markdown content is empty"
+  },
+  "error_title_timeout": {
+    "message": "Loading is taking too long \u2014 retry?",
+    "description": "Error title when a network request times out"
+  },
+  "error_title_network": {
+    "message": "Network seems unstable",
+    "description": "Error title when a network error occurs"
+  },
+  "error_body_private": {
+    "message": "Private repos are not supported yet. You may also be rate-limited. Try again later.",
+    "description": "Error detail for private repos or rate limiting"
+  },
+  "error_body_not_found": {
+    "message": "No readable Markdown content was found.",
+    "description": "Error detail when the content is not found"
+  },
+  "error_body_network": {
+    "message": "Try again later.",
+    "description": "Error detail for network errors"
+  },
+  "action_retry": {
+    "message": "Retry",
+    "description": "Button text to retry a failed load"
+  },
+
+  "fold_collapse": {
+    "message": "Collapse section",
+    "description": "aria-label for collapse button on H2 headings"
+  },
+  "fold_expand": {
+    "message": "Expand section",
+    "description": "aria-label for expand button on H2 headings"
+  },
+
+  "error_cannot_identify": {
+    "message": "Cannot identify this page",
+    "description": "Error when the current URL does not match any supported page pattern"
+  }
+}
