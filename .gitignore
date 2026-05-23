@@ -19,6 +19,15 @@ extension.crx
 extension.pem
 extension.zip
 
+# Chrome Web Store submission only — not for public repo
+chrome-web-store/
+
+# Numbered CWS listing screenshots — not for public repo
+docs/media/0[1-6]-*-1280x800.png
+
+# Dev tooling — not for public repo
+scripts/
+
 # Local browser/test output
 chrome-profile*/
 playwright-report/
