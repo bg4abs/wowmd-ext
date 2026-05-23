@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "wowMD",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "default_locale": "en",
   "description": "Turn long GitHub README and Markdown pages into a structured, easier reading view.",
   "permissions": [

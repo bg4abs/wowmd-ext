@@ -61,6 +61,66 @@
     });
   }
 
+  function copyTextWithFallback(text) {
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', 'true');
+    Object.assign(textarea.style, {
+      position: 'fixed',
+      left: '-9999px',
+      top: '0',
+      opacity: '0'
+    });
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    var ok = false;
+    try {
+      ok = document.execCommand('copy');
+    } catch (e) {}
+
+    document.body.removeChild(textarea);
+    return ok;
+  }
+
+  function addCodeCopyButtons(article) {
+    article.querySelectorAll('pre').forEach(function (pre) {
+      var code = pre.querySelector('code');
+      if (!code || pre.querySelector('.code-copy-button')) return;
+
+      var button = document.createElement('button');
+      button.className = 'code-copy-button';
+      button.type = 'button';
+      button.textContent = 'Copy';
+      button.setAttribute('aria-label', 'Copy code');
+
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var codeText = code.textContent || '';
+        if (!codeText) return;
+
+        navigator.clipboard.writeText(codeText).then(function () {
+          button.textContent = 'Copied';
+          setTimeout(function () {
+            button.textContent = 'Copy';
+          }, 1200);
+        }).catch(function () {
+          var copied = copyTextWithFallback(codeText);
+          button.textContent = copied ? 'Copied' : 'Failed';
+          setTimeout(function () {
+            button.textContent = 'Copy';
+          }, 1200);
+        });
+      });
+
+      pre.appendChild(button);
+    });
+  }
+
   function renderMarkdownToElement(rawMarkdown, meta) {
     if (!mdReaderMarkdown) {
       mdReaderMarkdown = createMarkdownRenderer();
@@ -86,6 +146,7 @@
     }
 
     wrapTables(article);
+    addCodeCopyButtons(article);
 
     if (window.mdReaderToc) {
       window.mdReaderToc.addHeadingIds(article);

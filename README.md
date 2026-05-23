@@ -47,6 +47,7 @@ Until the Chrome Web Store listing is approved, load the extension locally:
 - **Full-screen reader**: `Open full reader` opens a local structured reader in a new tab.
 - **Independent H2 folding**: long documents can be collapsed section by section.
 - **Code highlighting**: code blocks stay readable whenever possible.
+- **Code copy**: one-click copy button on every code block, in both the side panel and full-screen reader.
 - **Horizontal table scrolling**: wide tables do not break the panel layout.
 - **Relative image path fix**: common README image paths are rewritten so images can render.
 - **Safe rendering**: rendered HTML is sanitized before insertion.
@@ -63,7 +64,7 @@ Currently supported:
 - Public GitHub `.markdown` file pages.
 - Right-side reading panel.
 - Extension-owned full-screen reader tab.
-- Document outline, reading view, H2 folding, code blocks, tables, and image path fixes.
+- Document outline, reading view, H2 folding, code highlighting, code copy buttons, tables, and image path fixes.
 
 Not currently supported:
 
@@ -129,7 +130,8 @@ Before release, verify:
 - The panel opens on `Outline` by default.
 - Outline item clicks switch to `Read`.
 - `Open full reader` opens the full-screen reader in a new tab.
-- Outline navigation, active-section highlighting, H2 folding, images, tables, and code blocks work in the full-screen reader.
+- Outline navigation, active-section highlighting, H2 folding, images, tables, code blocks, and code copy buttons work in the full-screen reader.
+- Code copy buttons appear on hover and produce a "Copied" feedback state in both the side panel and full-screen reader.
 - GitHub SPA navigation does not leave stale entries behind.
 - The console has no obvious extension errors.
 
@@ -149,5 +151,5 @@ If you fork or redistribute this project, replace the wowMD name, icons, screens
 
 ## Status
 
-- Current version: `0.1.0`
+- Current version: `0.2.0`
 - Recommended release stage: Beta

@@ -2,6 +2,17 @@
 
 All notable changes to wowMD will be documented in this file.
 
+## [0.2.0-beta] - 2026-05-23
+
+### Added
+
+- Code copy buttons on code blocks in both the side panel and full-screen reader.
+- One-click copy using the Clipboard API, with a fallback for older browsers.
+
+### Changed
+
+- Code block padding adjusted to accommodate the copy button.
+
 ## [0.1.0-beta] - 2026-05-20
 
 Initial public beta release of the wowMD Chrome extension.
