@@ -2,6 +2,22 @@
 
 All notable changes to wowMD will be documented in this file.
 
+## [0.3.0-beta] - 2026-05-25
+
+### Added
+
+- `Continue in Web App` entry in the full-screen reader for public GitHub Markdown documents.
+- Hover/focus tooltip explaining Web App benefits: better reading experience, highlights and remarks, HTML export for Pro users, and local access.
+- Metadata-only Web App handoff using `source`, `rawUrl`, `pageUrl`, and optional GitHub source fields.
+
+### Changed
+
+- Bumped extension version to `0.3.0`.
+
+### Privacy
+
+- The Web App handoff does not put Markdown content, notes, highlights, license keys, email addresses, or tokens in the URL.
+
 ## [0.2.0-beta] - 2026-05-23
 
 ### Added

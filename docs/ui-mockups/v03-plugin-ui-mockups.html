@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wowMD v0.3 Plugin UI Mockups</title>
+  <style>
+    :root {
+      --wm-bg: #fbfaf7;
+      --wm-surface: #fffdf8;
+      --wm-surface-soft: #f4eee6;
+      --wm-text: #241f1a;
+      --wm-text-secondary: #5f574f;
+      --wm-text-muted: #8b8278;
+      --wm-border: #e6dccf;
+      --wm-hover: #f2eadf;
+      --wm-accent: #a86a43;
+      --wm-accent-hover: #8f5634;
+      --wm-brand: #5b4dff;
+      --wm-brand-soft: #f3f0ff;
+      --wm-shadow: rgba(36, 31, 26, 0.12);
+      --gh-bg: #ffffff;
+      --gh-border: #d0d7de;
+      --gh-muted: #57606a;
+      --gh-blue: #0969da;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f6f8fa;
+      color: #24292f;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .board {
+      width: 1440px;
+      min-height: 900px;
+      margin: 0 auto;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      background:
+        linear-gradient(90deg, rgba(208, 215, 222, 0.42) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(208, 215, 222, 0.42) 1px, transparent 1px),
+        #f6f8fa;
+      background-size: 48px 48px;
+    }
+
+    .mockup {
+      min-width: 0;
+    }
+
+    .label {
+      margin: 0 0 14px;
+      color: #57606a;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .stage {
+      position: relative;
+      height: 760px;
+      overflow: hidden;
+      border: 1px solid var(--gh-border);
+      border-radius: 8px;
+      background: var(--gh-bg);
+      box-shadow: 0 18px 42px rgba(27, 31, 36, 0.12);
+    }
+
+    .github-page {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+    }
+
+    .github-top {
+      height: 56px;
+      border-bottom: 1px solid var(--gh-border);
+      background: #f6f8fa;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 14px;
+    }
+
+    .octo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #24292f;
+    }
+
+    .repo-path {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      color: #57606a;
+      font-size: 15px;
+    }
+
+    .repo-path strong {
+      color: #0969da;
+      font-weight: 600;
+    }
+
+    .repo-shell {
+      padding: 24px 32px;
+    }
+
+    .file-list {
+      border: 1px solid var(--gh-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .file-row {
+      height: 40px;
+      display: grid;
+      grid-template-columns: 1fr 260px 90px;
+      align-items: center;
+      gap: 16px;
+      padding: 0 16px;
+      border-bottom: 1px solid #d8dee4;
+      color: #24292f;
+      font-size: 14px;
+    }
+
+    .file-row:last-child {
+      border-bottom: 0;
+    }
+
+    .file-row span:nth-child(2),
+    .file-row span:nth-child(3) {
+      color: #57606a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .readme-tabs {
+      height: 48px;
+      display: flex;
+      align-items: end;
+      gap: 16px;
+      padding: 0 16px;
+      border: 1px solid var(--gh-border);
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      background: #ffffff;
+    }
+
+    .readme-tab {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      color: #24292f;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .readme-tab.active {
+      border-color: #fd8c73;
+    }
+
+    .readme {
+      position: relative;
+      padding: 28px 32px 56px;
+      border: 1px solid var(--gh-border);
+      border-radius: 0 0 8px 8px;
+    }
+
+    .better-view {
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 12px;
+      padding: 0 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #24292f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tiny-mark {
+      width: 16px;
+      height: 16px;
+      border-radius: 5px;
+      background: var(--wm-brand);
+      display: grid;
+      place-content: center;
+      gap: 1px;
+    }
+
+    .tiny-mark i {
+      display: block;
+      width: 8px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--wm-brand-soft);
+    }
+
+    .tiny-mark i:last-child {
+      width: 5px;
+    }
+
+    .readme h1 {
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #d8dee4;
+      color: #0969da;
+      font-size: 32px;
+      line-height: 1.25;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .badge {
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 4px;
+      background: #24292f;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .readme p,
+    .readme li {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .readme a {
+      color: var(--gh-blue);
+    }
+
+    .panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 430px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: var(--wm-surface);
+      color: var(--wm-text);
+      box-shadow: -8px 0 24px var(--wm-shadow);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .panel-header {
+      height: 48px;
+      padding: 0 12px 0 16px;
+      border-bottom: 1px solid var(--wm-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: none;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--wm-brand);
+      display: grid;
+      place-content: center;
+      gap: 2px;
+    }
+
+    .brand-mark span {
+      display: block;
+      width: 9px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--wm-brand-soft);
+    }
+
+    .brand-mark span:last-child {
+      width: 6px;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .brand-title strong {
+      color: var(--wm-brand);
+    }
+
+    .version {
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 6px;
+      border: 1px solid var(--wm-border);
+      border-radius: 999px;
+      color: var(--wm-text-muted);
+      background: var(--wm-surface-soft);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .close {
+      border: 0;
+      background: transparent;
+      color: var(--wm-text-secondary);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--wm-border);
+      flex: none;
+    }
+
+    .tab {
+      flex: 1;
+      height: 40px;
+      border: 0;
+      background: var(--wm-surface-soft);
+      color: var(--wm-text-muted);
+      font-size: 14px;
+    }
+
+    .tab.active {
+      background: var(--wm-surface);
+      color: var(--wm-text);
+      font-weight: 700;
+      border-bottom: 2px solid var(--wm-accent);
+    }
+
+    .panel-body {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toc-view {
+      padding: 16px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .toc-meta {
+      margin: 0 0 12px;
+      color: var(--wm-text-muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-item {
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      border-radius: 6px;
+      padding: 4px 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toc-item.l1 {
+      padding-left: 8px;
+      color: var(--wm-text);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: inset 3px 0 0 var(--wm-accent);
+    }
+
+    .toc-item.l2 {
+      padding-left: 20px;
+      color: var(--wm-text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .toc-item.l3 {
+      padding-left: 32px;
+      color: var(--wm-text-muted);
+      font-size: 12px;
+    }
+
+    .panel-footer {
+      flex: none;
+      padding: 12px;
+      border-top: 1px solid var(--wm-border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .primary-webapp {
+      width: 100%;
+      height: 40px;
+      border: 1px solid var(--wm-accent-hover);
+      border-radius: 8px;
+      background: var(--wm-accent);
+      color: #fffdf8;
+      cursor: default;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .secondary-reader {
+      width: 100%;
+      height: 34px;
+      border: 1px solid var(--wm-border);
+      border-radius: 8px;
+      background: var(--wm-surface);
+      color: var(--wm-text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .site-link {
+      align-self: center;
+      color: var(--wm-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .source-strip {
+      margin: 12px 12px 0;
+      padding: 10px 12px;
+      border: 1px solid var(--wm-border);
+      border-radius: 8px;
+      background: var(--wm-surface-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 146px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .source-strip p {
+      margin: 0;
+      min-width: 0;
+      color: var(--wm-text-secondary);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .source-strip strong {
+      display: block;
+      color: var(--wm-text);
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .compact-webapp {
+      width: 146px;
+      height: 32px;
+      padding: 0 8px;
+      border: 1px solid var(--wm-accent-hover);
+      border-radius: 8px;
+      background: var(--wm-accent);
+      color: #fffdf8;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .option-b .toc-view {
+      padding-top: 14px;
+    }
+
+    .option-b .panel-footer {
+      align-items: center;
+      color: var(--wm-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <section class="mockup" id="option-a">
+      <p class="label">Option A: footer primary action</p>
+      <div class="stage">
+        <div class="github-page">
+          <div class="github-top">
+            <div class="octo"></div>
+            <div class="repo-path"><strong>facebook</strong><span>/</span><strong>react</strong></div>
+          </div>
+          <div class="repo-shell">
+            <div class="file-list">
+              <div class="file-row"><span>babel.config.js</span><span>Update build configuration</span><span>last week</span></div>
+              <div class="file-row"><span>package.json</span><span>Partially revert commit</span><span>last week</span></div>
+              <div class="file-row"><span>README.md</span><span>Refresh examples</span><span>2 years ago</span></div>
+            </div>
+            <div class="readme-tabs">
+              <div class="readme-tab active">README</div>
+              <div class="readme-tab">Code of conduct</div>
+              <div class="readme-tab">Security</div>
+            </div>
+            <article class="readme">
+              <div class="better-view"><span class="tiny-mark"><i></i><i></i></span>Better View</div>
+              <h1>React</h1>
+              <div class="badge-row"><span class="badge">license MIT</span><span class="badge">npm v19.2.6</span><span class="badge">passing</span></div>
+              <p>React is a JavaScript library for building user interfaces.</p>
+              <ul>
+                <li><strong>Declarative:</strong> React makes it painless to create interactive UIs.</li>
+                <li><strong>Component-Based:</strong> Build encapsulated components that manage their own state.</li>
+                <li><strong>Learn Once, Write Anywhere:</strong> Develop new features without rewriting existing code.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <header class="panel-header">
+            <span class="brand">
+              <span class="brand-mark"><span></span><span></span><span></span></span>
+              <span class="brand-title"><strong>wow</strong>MD</span>
+              <span class="version">v0.3.0</span>
+            </span>
+            <span class="close">×</span>
+          </header>
+          <div class="tabs">
+            <button class="tab active">Outline</button>
+            <button class="tab">Read</button>
+          </div>
+          <div class="panel-body">
+            <nav class="toc-view">
+              <p class="toc-meta">12 sections</p>
+              <div class="toc-list">
+                <div class="toc-item l1">React</div>
+                <div class="toc-item l2">Installation</div>
+                <div class="toc-item l2">Documentation</div>
+                <div class="toc-item l3">Examples</div>
+                <div class="toc-item l2">Contributing</div>
+                <div class="toc-item l2">License</div>
+              </div>
+            </nav>
+          </div>
+          <footer class="panel-footer">
+            <button class="primary-webapp">Continue in Web App →</button>
+            <button class="secondary-reader">Open full reader</button>
+            <a class="site-link">wowmd.app</a>
+          </footer>
+        </aside>
+      </div>
+    </section>
+
+    <section class="mockup" id="option-b">
+      <p class="label">Option B: source-aware action strip</p>
+      <div class="stage">
+        <div class="github-page">
+          <div class="github-top">
+            <div class="octo"></div>
+            <div class="repo-path"><strong>facebook</strong><span>/</span><strong>react</strong></div>
+          </div>
+          <div class="repo-shell">
+            <div class="file-list">
+              <div class="file-row"><span>babel.config.js</span><span>Update build configuration</span><span>last week</span></div>
+              <div class="file-row"><span>package.json</span><span>Partially revert commit</span><span>last week</span></div>
+              <div class="file-row"><span>README.md</span><span>Refresh examples</span><span>2 years ago</span></div>
+            </div>
+            <div class="readme-tabs">
+              <div class="readme-tab active">README</div>
+              <div class="readme-tab">Code of conduct</div>
+              <div class="readme-tab">Security</div>
+            </div>
+            <article class="readme">
+              <div class="better-view"><span class="tiny-mark"><i></i><i></i></span>Better View</div>
+              <h1>React</h1>
+              <div class="badge-row"><span class="badge">license MIT</span><span class="badge">npm v19.2.6</span><span class="badge">passing</span></div>
+              <p>React is a JavaScript library for building user interfaces.</p>
+              <ul>
+                <li><strong>Declarative:</strong> React makes it painless to create interactive UIs.</li>
+                <li><strong>Component-Based:</strong> Build encapsulated components that manage their own state.</li>
+                <li><strong>Learn Once, Write Anywhere:</strong> Develop new features without rewriting existing code.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="panel option-b">
+          <header class="panel-header">
+            <span class="brand">
+              <span class="brand-mark"><span></span><span></span><span></span></span>
+              <span class="brand-title"><strong>wow</strong>MD</span>
+              <span class="version">v0.3.0</span>
+            </span>
+            <span class="close">×</span>
+          </header>
+          <div class="source-strip">
+            <p><strong>README.md</strong>GitHub · facebook/react</p>
+            <button class="compact-webapp">Continue in Web App</button>
+          </div>
+          <div class="tabs">
+            <button class="tab active">Outline</button>
+            <button class="tab">Read</button>
+          </div>
+          <div class="panel-body">
+            <nav class="toc-view">
+              <p class="toc-meta">12 sections</p>
+              <div class="toc-list">
+                <div class="toc-item l1">React</div>
+                <div class="toc-item l2">Installation</div>
+                <div class="toc-item l2">Documentation</div>
+                <div class="toc-item l3">Examples</div>
+                <div class="toc-item l2">Contributing</div>
+                <div class="toc-item l2">License</div>
+              </div>
+            </nav>
+          </div>
+          <footer class="panel-footer">
+            wowmd.app
+          </footer>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wowMD Full Reader Focused Web App Entry</title>
+  <style>
+    :root {
+      --wm-bg: #fbfaf7;
+      --wm-surface: #fffdf8;
+      --wm-surface-soft: #f4eee6;
+      --wm-text: #241f1a;
+      --wm-text-secondary: #5f574f;
+      --wm-text-muted: #8b8278;
+      --wm-border: #e6dccf;
+      --wm-hover: #f2eadf;
+      --wm-accent: #a86a43;
+      --wm-accent-hover: #8f5634;
+      --wm-accent-soft: #ead7c6;
+      --wm-brand: #5b4dff;
+      --wm-brand-soft: #f3f0ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(208, 215, 222, 0.36) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(208, 215, 222, 0.36) 1px, transparent 1px),
+        #f6f8fa;
+      background-size: 48px 48px;
+      color: var(--wm-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .frame {
+      width: 1360px;
+      height: 760px;
+      margin: 44px auto;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--wm-bg);
+      box-shadow: 0 22px 56px rgba(27, 31, 36, 0.16);
+    }
+
+    .reader-shell {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 64px minmax(0, 1fr);
+    }
+
+    .reader-topbar {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--wm-border);
+      background: rgba(255, 253, 248, 0.95);
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .reader-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .reader-brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--wm-brand);
+      display: grid;
+      place-content: center;
+      gap: 3px;
+      flex: none;
+    }
+
+    .reader-brand-mark span {
+      display: block;
+      width: 13px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--wm-brand-soft);
+    }
+
+    .reader-brand-mark span:last-child { width: 9px; }
+
+    .reader-brand-text {
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .reader-brand-wow { color: var(--wm-brand); }
+    .reader-brand-md { color: var(--wm-text); font-weight: 500; }
+
+    .reader-version {
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 6px;
+      border: 1px solid var(--wm-border);
+      border-radius: 999px;
+      color: var(--wm-text-muted);
+      background: var(--wm-surface-soft);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .reader-file {
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .reader-repo {
+      color: var(--wm-text);
+      font-weight: 800;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .reader-path {
+      color: var(--wm-text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .reader-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reader-action {
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border: 1px solid var(--wm-border);
+      border-radius: 8px;
+      background: var(--wm-surface);
+      color: var(--wm-text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .webapp-entry {
+      position: relative;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--wm-accent-hover);
+      border-radius: 8px;
+      background: var(--wm-accent);
+      box-shadow: 0 8px 18px rgba(168, 106, 67, 0.18);
+    }
+
+    .webapp-main {
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      color: #fffdf8;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .webapp-info {
+      width: 38px;
+      height: 40px;
+      border-left: 1px solid rgba(255, 253, 248, 0.32);
+      display: inline-grid;
+      place-content: center;
+      color: #fffdf8;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .webapp-info span {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-content: center;
+      border: 1px solid rgba(255, 253, 248, 0.62);
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+    .webapp-tooltip {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 12px);
+      width: 330px;
+      padding: 14px;
+      border: 1px solid var(--wm-border);
+      border-radius: 8px;
+      background: var(--wm-surface);
+      color: var(--wm-text);
+      box-shadow: 0 18px 42px rgba(36, 31, 26, 0.18);
+    }
+
+    .webapp-tooltip::before {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: -6px;
+      width: 10px;
+      height: 10px;
+      border-left: 1px solid var(--wm-border);
+      border-top: 1px solid var(--wm-border);
+      background: var(--wm-surface);
+      transform: rotate(45deg);
+    }
+
+    .webapp-tooltip-title {
+      margin: 0 0 4px;
+      color: var(--wm-text);
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .webapp-tooltip-subtitle {
+      margin: 0 0 12px;
+      color: var(--wm-text-muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      color: var(--wm-text-secondary);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .feature-icon {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-content: center;
+      border-radius: 5px;
+      background: var(--wm-accent-soft);
+      color: var(--wm-accent-hover);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .pro-note {
+      color: var(--wm-text-muted);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .reader-layout {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .reader-outline {
+      height: 100%;
+      min-height: 0;
+      padding: 24px 18px;
+      border-right: 1px solid var(--wm-border);
+      background: var(--wm-surface);
+      overflow: hidden;
+    }
+
+    .reader-outline-label {
+      margin: 0 0 14px;
+      color: var(--wm-text-muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .reader-outline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reader-toc-item {
+      width: 100%;
+      min-height: 32px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--wm-text-secondary);
+      display: flex;
+      align-items: center;
+      padding: 5px 8px;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 13px;
+    }
+
+    .reader-toc-item.active {
+      background: var(--wm-hover);
+      color: var(--wm-text);
+      box-shadow: inset 3px 0 0 var(--wm-accent);
+      font-weight: 800;
+    }
+
+    .reader-toc-level-1 { padding-left: 8px; font-size: 14px; font-weight: 800; }
+    .reader-toc-level-2 { padding-left: 20px; font-weight: 700; }
+    .reader-toc-level-3 { padding-left: 32px; color: var(--wm-text-muted); font-size: 12px; }
+
+    .reader-main {
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .reader-document {
+      width: min(920px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 48px 0 88px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .reader-document h1 {
+      margin: 0 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--wm-border);
+      font-size: 36px;
+      line-height: 1.25;
+    }
+
+    .reader-document h2 {
+      margin: 44px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--wm-border);
+      font-size: 26px;
+      line-height: 1.25;
+    }
+
+    .reader-document p,
+    .reader-document li {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="reader-shell">
+      <header class="reader-topbar">
+        <div class="reader-brand" aria-label="wowMD">
+          <span class="reader-brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="reader-brand-text" aria-hidden="true"><span class="reader-brand-wow">wow</span><span class="reader-brand-md">MD</span></span>
+          <span class="reader-version">v0.3.0</span>
+        </div>
+        <div class="reader-file">
+          <span class="reader-repo">facebook / react</span>
+          <span class="reader-path">README.md</span>
+        </div>
+        <nav class="reader-actions" aria-label="Reader actions">
+          <span class="webapp-entry">
+            <a class="webapp-main">Continue in Web App →</a>
+            <span class="webapp-info" aria-label="Web App features"><span>i</span></span>
+            <span class="webapp-tooltip" role="tooltip">
+              <p class="webapp-tooltip-title">The Web App provides...</p>
+              <p class="webapp-tooltip-subtitle">Your GitHub Markdown opens as a local reading copy.</p>
+              <ul class="feature-list">
+                <li><span class="feature-icon">R</span><span>Better reading experience</span></li>
+                <li><span class="feature-icon">H</span><span>Highlights and remarks</span></li>
+                <li><span class="feature-icon">E</span><span>Export to HTML <span class="pro-note">(Pro users only)</span></span></li>
+                <li><span class="feature-icon">L</span><span>Full local access</span></li>
+              </ul>
+            </span>
+          </span>
+          <a class="reader-action">View on GitHub</a>
+          <button class="reader-action">Close</button>
+        </nav>
+      </header>
+      <main class="reader-layout">
+        <aside class="reader-outline" aria-label="Document outline">
+          <p class="reader-outline-label">Outline</p>
+          <div class="reader-outline-list">
+            <button class="reader-toc-item reader-toc-level-1 active">React</button>
+            <button class="reader-toc-item reader-toc-level-2">Installation</button>
+            <button class="reader-toc-item reader-toc-level-2">Documentation</button>
+            <button class="reader-toc-item reader-toc-level-3">Examples</button>
+            <button class="reader-toc-item reader-toc-level-2">Contributing</button>
+            <button class="reader-toc-item reader-toc-level-2">License</button>
+          </div>
+        </aside>
+        <section class="reader-main">
+          <article class="reader-document">
+            <h1>React</h1>
+            <p>React is a JavaScript library for building user interfaces.</p>
+            <ul>
+              <li><strong>Declarative:</strong> React makes it painless to create interactive UIs.</li>
+              <li><strong>Component-Based:</strong> Build encapsulated components that manage their own state.</li>
+              <li><strong>Learn Once, Write Anywhere:</strong> Develop new features without rewriting existing code.</li>
+            </ul>
+            <h2>Installation</h2>
+            <p>Use the framework guide for your environment, then import React components into your application.</p>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

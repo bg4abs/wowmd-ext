@@ -8,7 +8,7 @@ wowMD is a lightweight Chrome extension that turns long public GitHub README and
 
 wowMD focuses on one common workflow: reading long and complex README files or `.md` / `.markdown` documents on GitHub.
 
-When a supported page is complex enough to benefit from structured reading, wowMD shows a `Better View` button near the document. Clicking it opens a right-side panel with an outline, section navigation, and a reading view. For longer sessions, `Open full reader` opens an extension-owned full-screen reader in a new browser tab.
+When a supported page is complex enough to benefit from structured reading, wowMD shows a `Better View` button near the document. Clicking it opens a right-side panel with an outline, section navigation, and a reading view. For longer sessions, `Open full reader` opens an extension-owned full-screen reader in a new browser tab. From the full-screen reader, `Continue in Web App` opens wowMD Web App with only the current GitHub raw URL and source metadata.
 
 ## Preview
 
@@ -45,6 +45,7 @@ Until the Chrome Web Store listing is approved, load the extension locally:
 - **Clear return path**: the Read view includes `Back to outline`.
 - **Right-side reading panel**: GitHub remains the main page, while wowMD acts as a reading aid.
 - **Full-screen reader**: `Open full reader` opens a local structured reader in a new tab.
+- **Continue in Web App**: the full-screen reader can send the current public GitHub Markdown `rawUrl` to wowMD Web App for a richer local reading workspace.
 - **Independent H2 folding**: long documents can be collapsed section by section.
 - **Code highlighting**: code blocks stay readable whenever possible.
 - **Code copy**: one-click copy button on every code block, in both the side panel and full-screen reader.
@@ -72,9 +73,9 @@ Not currently supported:
 - Non-GitHub websites.
 - GitHub Issues, Pull Requests, Wiki pages, or other GitHub surfaces.
 - Non-Markdown files.
-- AI summaries, translation, editing, bookmarks, cloud sync, accounts, or settings.
+- AI summaries, translation, editing, bookmarks, cloud sync, accounts, or extension settings.
 
-Future premium features may be provided through the `wowmd.app` API, but the current full-screen reader remains local and does not upload document content.
+The Web App handoff passes only GitHub source metadata such as `rawUrl`, `pageUrl`, repository, branch, and path. It does not put Markdown content, license keys, email addresses, tokens, highlights, or notes in the URL.
 
 ## How to Use
 
@@ -87,6 +88,7 @@ Future premium features may be provided through the `wowmd.app` API, but the cur
 5. Click an outline item to switch to `Read` and scroll to the matching section.
 6. Use `Back to outline` at the top of Read to return to the outline.
 7. Click `Open full reader` at the bottom of the panel to open the full-screen reader in a new tab.
+8. In the full-screen reader, click `Continue in Web App` to open the current public GitHub Markdown in wowMD Web App.
 
 ## Privacy
 
@@ -99,6 +101,7 @@ wowMD is designed to access as little as possible.
 - It does not request Raw Markdown or GitHub API content before the user clicks `Better View`.
 - After the user clicks the entry, wowMD may request the current public Markdown document so it can render the reading panel or full-screen reader.
 - The full-screen reader asks the background service worker to write the current document into `chrome.storage.session` temporarily; the data stays in browser session memory and is not persisted.
+- `Continue in Web App` passes only source metadata in the URL. The extension does not upload Markdown content, notes, highlights, license keys, email addresses, or tokens to the Web App.
 
 ## Permissions
 
@@ -130,6 +133,8 @@ Before release, verify:
 - The panel opens on `Outline` by default.
 - Outline item clicks switch to `Read`.
 - `Open full reader` opens the full-screen reader in a new tab.
+- `Continue in Web App` appears in the full-screen reader only when a public GitHub raw URL is available.
+- The Web App handoff URL contains only `source`, `rawUrl`, `pageUrl`, and optional source metadata.
 - Outline navigation, active-section highlighting, H2 folding, images, tables, code blocks, and code copy buttons work in the full-screen reader.
 - Code copy buttons appear on hover and produce a "Copied" feedback state in both the side panel and full-screen reader.
 - GitHub SPA navigation does not leave stale entries behind.
@@ -151,5 +156,5 @@ If you fork or redistribute this project, replace the wowMD name, icons, screens
 
 ## Status
 
-- Current version: `0.2.0`
+- Current version: `0.3.0`
 - Recommended release stage: Beta

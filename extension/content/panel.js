@@ -47,8 +47,8 @@
   };
 
   var shadowRoot = null;
-  var APP_VERSION = '0.2.0';
-  var APP_URL = 'https://wowmd.app/';
+  var APP_VERSION = '0.3.0';
+  var APP_URL = 'https://wowmd-app.pages.dev/';
 
   function ensureShadowRoot() {
     if (shadowRoot) return;
@@ -94,7 +94,7 @@
       '</main>' +
       '<footer class="md-reader-footer">' +
       '  <button class="md-reader-full-btn" type="button" disabled>' + t('open_full_reader') + '</button>' +
-      '  <a class="md-reader-site-link" href="' + APP_URL + '" target="_blank" rel="noopener noreferrer">' + t('footer_site_link') + '</a>' +
+      '  <p class="md-reader-site-text">Check <a class="md-reader-site-link" href="' + APP_URL + '" target="_blank" rel="noopener noreferrer">' + t('footer_site_link') + '</a> for more.</p>' +
       '</footer>';
 
     shadowRoot.appendChild(el);

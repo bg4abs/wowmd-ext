@@ -85,6 +85,13 @@
     return ok;
   }
 
+  var COPY_ICON_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="8" y="8" width="10" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M6 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  var CHECK_ICON_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function setCopyButtonIcon(button, iconSvg) {
+    button.innerHTML = iconSvg;
+  }
+
   function addCodeCopyButtons(article) {
     article.querySelectorAll('pre').forEach(function (pre) {
       var code = pre.querySelector('code');
@@ -93,27 +100,40 @@
       var button = document.createElement('button');
       button.className = 'code-copy-button';
       button.type = 'button';
-      button.textContent = 'Copy';
       button.setAttribute('aria-label', 'Copy code');
+      button.setAttribute('data-copied', 'false');
+      setCopyButtonIcon(button, COPY_ICON_SVG);
 
       button.addEventListener('click', function (event) {
         event.preventDefault();
         event.stopPropagation();
 
+        if (button.getAttribute('data-copied') === 'true') return;
+
         var codeText = code.textContent || '';
         if (!codeText) return;
 
         navigator.clipboard.writeText(codeText).then(function () {
-          button.textContent = 'Copied';
+          button.setAttribute('data-copied', 'true');
+          button.setAttribute('aria-label', 'Copied');
+          setCopyButtonIcon(button, CHECK_ICON_SVG);
           setTimeout(function () {
-            button.textContent = 'Copy';
+            button.setAttribute('data-copied', 'false');
+            button.setAttribute('aria-label', 'Copy code');
+            setCopyButtonIcon(button, COPY_ICON_SVG);
           }, 1200);
         }).catch(function () {
           var copied = copyTextWithFallback(codeText);
-          button.textContent = copied ? 'Copied' : 'Failed';
-          setTimeout(function () {
-            button.textContent = 'Copy';
-          }, 1200);
+          if (copied) {
+            button.setAttribute('data-copied', 'true');
+            button.setAttribute('aria-label', 'Copied');
+            setCopyButtonIcon(button, CHECK_ICON_SVG);
+            setTimeout(function () {
+              button.setAttribute('data-copied', 'false');
+              button.setAttribute('aria-label', 'Copy code');
+              setCopyButtonIcon(button, COPY_ICON_SVG);
+            }, 1200);
+          }
         });
       });
 

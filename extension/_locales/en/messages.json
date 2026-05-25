@@ -40,8 +40,8 @@
     "description": "Link text to return from reading view to TOC"
   },
   "footer_site_link": {
-    "message": "wowmd.app",
-    "description": "Footer link text for the product website"
+    "message": "wowMD Web App",
+    "description": "Link text for the product website"
   },
 
   "loading_message": {

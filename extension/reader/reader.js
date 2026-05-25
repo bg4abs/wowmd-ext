@@ -14,11 +14,18 @@
   document.addEventListener('DOMContentLoaded', function () {
     elements.repo = document.getElementById('reader-repo');
     elements.path = document.getElementById('reader-path');
+    elements.version = document.getElementById('reader-version');
+    elements.webappWrap = document.getElementById('reader-webapp-wrap');
+    elements.webapp = document.getElementById('reader-webapp');
     elements.source = document.getElementById('reader-source');
     elements.close = document.getElementById('reader-close');
     elements.outline = document.getElementById('reader-outline');
     elements.scroll = document.getElementById('reader-scroll');
     elements.document = document.getElementById('reader-document');
+
+    if (elements.version && typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getManifest) {
+      elements.version.textContent = 'v' + chrome.runtime.getManifest().version;
+    }
 
     elements.close.addEventListener('click', function () {
       window.close();
@@ -68,6 +75,8 @@
       elements.source.classList.add('hidden');
     }
 
+    renderWebAppEntry(payload, meta, pathLabel);
+
     var contentElement = window.mdReaderRender.renderMarkdownToElement(payload.markdown, meta);
 
     if (window.mdReaderFold) {
@@ -82,6 +91,88 @@
     elements.document.innerHTML = '';
     elements.document.appendChild(contentElement);
     renderOutline(state.tocItems);
+  }
+
+  function renderWebAppEntry(payload, meta, pathLabel) {
+    if (!elements.webappWrap || !elements.webapp) return;
+
+    var rawUrl = normalizeRawUrl(payload.rawUrl || meta.rawUrl, meta);
+    if (!rawUrl || !isAllowedRawUrl(rawUrl)) {
+      elements.webappWrap.classList.add('hidden');
+      elements.webapp.removeAttribute('href');
+      return;
+    }
+
+    elements.webapp.href = buildWebAppImportUrl({
+      rawUrl: rawUrl,
+      pageUrl: payload.sourceUrl || location.href,
+      owner: meta.owner,
+      repo: meta.repo,
+      branch: meta.branch,
+      path: meta.path,
+      title: pathLabel
+    });
+    elements.webappWrap.classList.remove('hidden');
+  }
+
+  function buildWebAppImportUrl(docMeta) {
+    var url = new URL('https://wowmd-app.pages.dev/app/import');
+    url.searchParams.set('source', 'github');
+    url.searchParams.set('rawUrl', docMeta.rawUrl);
+    url.searchParams.set('pageUrl', docMeta.pageUrl || '');
+
+    if (docMeta.owner) url.searchParams.set('owner', docMeta.owner);
+    if (docMeta.repo) url.searchParams.set('repo', docMeta.repo);
+    if (docMeta.branch) url.searchParams.set('branch', docMeta.branch);
+    if (docMeta.path) url.searchParams.set('path', docMeta.path);
+    if (docMeta.title) url.searchParams.set('title', docMeta.title);
+
+    return url.toString();
+  }
+
+  function isAllowedRawUrl(value) {
+    try {
+      var url = new URL(value);
+      return url.protocol === 'https:' && url.hostname === 'raw.githubusercontent.com';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function normalizeRawUrl(rawUrl, meta) {
+    if (!rawUrl) return null;
+
+    try {
+      var url = new URL(rawUrl);
+      if (url.hostname === 'raw.githubusercontent.com') return url.href;
+      if (url.hostname !== 'github.com') return rawUrl;
+
+      var parts = url.pathname.split('/').filter(Boolean);
+      var owner = parts[0];
+      var repo = parts[1];
+      var rawIndex = parts.indexOf('raw');
+      if (!owner || !repo || rawIndex < 0) return rawUrl;
+
+      var rawParts = parts.slice(rawIndex + 1);
+      var branch = null;
+      var filePath = null;
+
+      if (rawParts[0] === 'refs' && rawParts[1] === 'heads') {
+        branch = rawParts[2];
+        filePath = rawParts.slice(3).join('/');
+      } else {
+        branch = rawParts[0];
+        filePath = rawParts.slice(1).join('/');
+      }
+
+      if (!branch && meta && meta.branch) branch = meta.branch;
+      if (!filePath && meta && meta.path) filePath = meta.path;
+      if (!branch || !filePath) return rawUrl;
+
+      return 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/' + filePath;
+    } catch (e) {
+      return rawUrl;
+    }
   }
 
   function renderOutline(items) {

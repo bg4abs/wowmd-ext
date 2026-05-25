@@ -40,6 +40,42 @@
     return 'https://raw.githubusercontent.com/' + parsed.owner + '/' + parsed.repo + '/' + parsed.branch + '/' + parsed.path;
   }
 
+  function normalizeRawUrl(rawUrl, parsed) {
+    if (!rawUrl) return null;
+
+    try {
+      var url = new URL(rawUrl);
+      if (url.hostname === 'raw.githubusercontent.com') return url.href;
+      if (url.hostname !== 'github.com') return rawUrl;
+
+      var parts = url.pathname.split('/').filter(Boolean);
+      var owner = parts[0];
+      var repo = parts[1];
+      var rawIndex = parts.indexOf('raw');
+      if (!owner || !repo || rawIndex < 0) return rawUrl;
+
+      var rawParts = parts.slice(rawIndex + 1);
+      var branch = null;
+      var filePath = null;
+
+      if (rawParts[0] === 'refs' && rawParts[1] === 'heads') {
+        branch = rawParts[2];
+        filePath = rawParts.slice(3).join('/');
+      } else {
+        branch = rawParts[0];
+        filePath = rawParts.slice(1).join('/');
+      }
+
+      if (!branch && parsed && parsed.branch) branch = parsed.branch;
+      if (!filePath && parsed && parsed.path) filePath = parsed.path;
+      if (!branch || !filePath) return rawUrl;
+
+      return 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/' + filePath;
+    } catch (e) {
+      return rawUrl;
+    }
+  }
+
   function getReadmeApiUrl(parsed) {
     if (!parsed || parsed.type !== 'repo') return null;
     return 'https://api.github.com/repos/' + parsed.owner + '/' + parsed.repo + '/readme';
@@ -158,9 +194,10 @@
     // Layer 1: DOM Raw button
     var rawUrl = getRawUrlFromDom();
     if (rawUrl) {
-      return fetchText(rawUrl).then(function (result) {
+      var normalizedRawUrl = normalizeRawUrl(rawUrl, parsed);
+      return fetchText(normalizedRawUrl).then(function (result) {
         if (result.ok) {
-          return { ok: true, markdown: result.text, rawUrl: rawUrl, meta: withRawMeta(meta, rawUrl) };
+          return { ok: true, markdown: result.text, rawUrl: normalizedRawUrl, meta: withRawMeta(meta, normalizedRawUrl) };
         }
         return tryLayer2();
       });
@@ -192,8 +229,8 @@
             return {
               ok: true,
               markdown: result.markdown,
-              rawUrl: result.rawUrl || rawUrl,
-              meta: withRawMeta(meta, result.rawUrl || rawUrl)
+              rawUrl: result.rawUrl || normalizeRawUrl(rawUrl, parsed),
+              meta: withRawMeta(meta, result.rawUrl || normalizeRawUrl(rawUrl, parsed))
             };
           }
           return tryLayer4();

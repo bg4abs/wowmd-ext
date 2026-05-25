@@ -8,7 +8,7 @@ wowMD 是一个轻量级 Chrome 扩展，用来把较长的公开 GitHub README 
 
 wowMD 专注于一个常见场景：阅读 GitHub 上较长、结构复杂的 README 或 `.md` / `.markdown` 文档。
 
-当当前页面足够复杂、确实值得使用结构化阅读时，wowMD 会在文档区域显示 `Better View` 按钮。点击后，页面右侧会打开一个阅读面板，提供目录、章节跳转和阅读视图。如果用户想进行更长时间的沉浸式阅读，可以点击 `Open full reader`，在浏览器新标签页中打开扩展内部的全屏阅读器。
+当当前页面足够复杂、确实值得使用结构化阅读时，wowMD 会在文档区域显示 `Better View` 按钮。点击后，页面右侧会打开一个阅读面板，提供目录、章节跳转和阅读视图。如果用户想进行更长时间的沉浸式阅读，可以点击 `Open full reader`，在浏览器新标签页中打开扩展内部的全屏阅读器。用户也可以在全屏阅读器中点击 `Continue in Web App`，只把当前 GitHub raw URL 和来源 metadata 带到 wowMD Web App。
 
 ## 效果预览
 
@@ -45,6 +45,7 @@ Chrome Web Store 版本目前正在审核中。商店提交素材不包含在这
 - **清晰返回路径**：Read 顶部提供 `Back to outline`。
 - **右侧辅助面板**：GitHub 原页面仍然是主场景，wowMD 只是阅读辅助。
 - **全屏阅读器**：点击 `Open full reader` 后，在新标签页中打开本地结构化阅读器。
+- **在 Web App 中继续**：全屏阅读器可以把当前公开 GitHub Markdown 的 `rawUrl` 发送给 wowMD Web App，进入更完整的本地阅读工作区。
 - **H2 独立折叠**：长文档可以按章节收起和展开。
 - **代码块高亮**：尽可能保留代码可读性。
 - **代码拷贝**：每个代码块均提供一键复制按钮，侧边面板和全屏阅读器均可用。
@@ -72,9 +73,9 @@ wowMD v0.x 是阅读辅助工具，不是完整文档平台。
 - 非 GitHub 网站。
 - GitHub Issue、Pull Request、Wiki 等页面。
 - 非 Markdown 文件。
-- AI 总结、翻译、编辑、收藏、云同步、账号系统或设置页。
+- AI 总结、翻译、编辑、收藏、云同步、账号系统或扩展设置页。
 
-未来增值功能可以通过 `wowmd.app` API 提供，但当前全屏阅读器仍然只做本地结构化阅读，不上传文档内容。
+Web App 衔接只传 GitHub 来源 metadata，例如 `rawUrl`、`pageUrl`、仓库、分支和路径。不会把 Markdown 全文、License Key、邮箱、token、高亮或附注放进 URL。
 
 ## 使用方式
 
@@ -87,6 +88,7 @@ wowMD v0.x 是阅读辅助工具，不是完整文档平台。
 5. 点击目录项后，面板会切换到 `Read` 并滚动到对应章节。
 6. 在 `Read` 顶部点击 `Back to outline` 返回目录。
 7. 点击面板底部的 `Open full reader`，可在新标签页中打开全屏阅读器。
+8. 在全屏阅读器中点击 `Continue in Web App`，可在 wowMD Web App 中打开当前公开 GitHub Markdown。
 
 ## 隐私保护
 
@@ -99,6 +101,7 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 - 不在用户点击 `Better View` 前请求 Raw Markdown 或 GitHub API。
 - 只有当用户点击入口后，才会为了渲染阅读面板或全屏阅读器请求当前公开 Markdown 文档。
 - 全屏阅读器通过 background service worker 写入 `chrome.storage.session`，临时传递当前文档数据；数据保存在浏览器会话内，不做持久化保存。
+- `Continue in Web App` 只在 URL 中传递来源 metadata。扩展不会向 Web App 上传 Markdown 全文、笔记、高亮、License Key、邮箱或 token。
 
 ## 权限说明
 
@@ -130,6 +133,8 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 - Panel 默认打开 `Outline`。
 - 目录跳转能切换到 `Read`。
 - `Open full reader` 能打开新标签页全屏阅读器。
+- 全屏阅读器只在存在公开 GitHub raw URL 时显示 `Continue in Web App`。
+- Web App 衔接 URL 只包含 `source`、`rawUrl`、`pageUrl` 和可选来源 metadata。
 - 全屏阅读器中的目录跳转、当前位置高亮、H2 折叠、图片、表格、代码块、代码复制按钮正常。
 - 侧边面板和全屏阅读器中的代码复制按钮在 hover 时出现，点击后显示 "Copied" 反馈。
 - GitHub SPA 页面切换后不会残留旧入口。
@@ -151,5 +156,5 @@ wowMD 的设计原则是少访问、少收集、少打扰。
 
 ## 项目状态
 
-- 当前版本：`0.2.0`
+- 当前版本：`0.3.0`
 - 推荐发布阶段：Beta
